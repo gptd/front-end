@@ -4,11 +4,14 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./routes/home.jsx";
 import Auth from "./routes/auth.jsx";
+import Result from "./routes/result-page.jsx";
 
 import AuthComponent from "./components/auth";
 import LoginComponent from "./components/login";
 import RegisterComponent from "./components/register";
 import LogoutComponent from "./components/logout";
+
+import ProtectedRoute from "./components/protectedRoute";
 
 import ErrorPage from "./error-page";
 import SessionProvider from "./components/sessionProvider";
@@ -18,6 +21,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/results",
+    element: (
+      <ProtectedRoute>
+        <Result />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/auth",

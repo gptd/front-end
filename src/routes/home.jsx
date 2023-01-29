@@ -1,8 +1,11 @@
 import AboutIcon from "../assets/about.svg";
+import { Outlet } from "react-router-dom";
+
 import ShareIcon from "../assets/share.svg";
 import { useSession } from "../components/sessionProvider";
 import { Link } from "react-router-dom";
 
+// Fix Logout showing even though user is not logged in
 function App() {
   const session = useSession();
 
