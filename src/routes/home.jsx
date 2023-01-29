@@ -1,13 +1,14 @@
 import AboutIcon from "../assets/about.svg";
-import { Outlet } from "react-router-dom";
-
 import ShareIcon from "../assets/share.svg";
-import { useSession } from "../components/sessionProvider";
+
+import { useState, useContext } from "react";
+import { SessionContext } from "../components/sessionProvider";
 import { Link } from "react-router-dom";
 
-// Fix Logout showing even though user is not logged in
 function App() {
-  const session = useSession();
+  const session = useContext(SessionContext);
+
+  const [query, setQuery] = useState("");
 
   return (
     <div className="w-screen h-screen h-[100dvh] bg-slate-600 flex flex-col pt-4 pb-12 px-6 gap-2 md:w-2/5 md:mx-auto">
@@ -66,10 +67,16 @@ function App() {
         </nav>
         <h1 className="text-4xl font-bold">Have I been GPT'd?</h1>
       </header>
-      <textarea className="rounded-xl shadow-inset flex-grow shadow-inner p-4 text-black" />
-      <button className="rounded-xl bg-teal-600 text-base px-4 py-3 shadow-xl hover:bg-teal-400">
+      <textarea
+        className="rounded-xl shadow-inset flex-grow shadow-inner p-4 text-black"
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <Link
+        className="rounded-xl bg-teal-600 px-4 py-3 shadow-xl hover:bg-teal-400 text-center"
+        to={`/results?${new URLSearchParams({ query }).toString()}`}
+      >
         Check
-      </button>
+      </Link>
     </div>
   );
 }

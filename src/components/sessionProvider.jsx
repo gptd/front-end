@@ -2,32 +2,33 @@ import { createContext, useEffect, useState, useContext } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 export const SessionContext = createContext();
-export const useSession = () => useContext(SessionContext);
 
 export default function SessionProvider({ children }) {
   const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getSession = async () => {
       const { data, error } = await supabase.auth.getSession();
+      setSession(data?.session ?? null);
+      setLoading(false);
 
-      if (error) {
-        return null;
-      }
-
-      console.log(data);
-
-      if (data && data.session) return setSession(data.session);
+      const { listener } = supabase.auth.onAuthStateChange((event, session) => {
+        setSession(session?.session ?? null);
+        setLoading(false);
+      });
     };
 
-    supabase.auth.onAuthStateChange((_, session) => {
-      setSession(session);
-    });
+    getSession();
   }, []);
 
   return (
     <SessionContext.Provider value={session}>
-      {children}
+      {!loading && children}
     </SessionContext.Provider>
   );
 }
+
+export const useSession = () => {
+  return useContext(SessionContext);
+};
