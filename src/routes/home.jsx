@@ -1,10 +1,10 @@
 import { useState } from "react";
-import AboutIcon from "./assets/about.svg";
-import ShareIcon from "./assets/share.svg";
+import AboutIcon from "../assets/about.svg";
+import ShareIcon from "../assets/share.svg";
 
 function App() {
   return (
-    <div className="w-screen h-screen h-[100dvh] bg-slate-600 flex flex-col px-4 py-6 gap-2 md:w-2/5 md:mx-auto">
+    <div className="w-screen h-screen h-[100dvh] bg-slate-600 flex flex-col pt-4 pb-12 px-6 gap-2 md:w-2/5 md:mx-auto">
       <header className="flex flex-col gap-4 mb-2">
         <nav className="flex flex-row gap-4 justify-end">
           <a href="/share" className="flex flex-row gap-1 font-semibold">
