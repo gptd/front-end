@@ -20,6 +20,7 @@ export default function Register() {
     // Check if value matches this regex pattern ^\+[1-9]\d{1,14}$
     if (!/^\+[1-9]\d{1,14}$/.test(value)) {
       setError("Please enter a valid phone number, e.g. +1234567890");
+      setPhone(value);
       return;
     }
 
