@@ -63,7 +63,7 @@ export default function ResultPage() {
   }, []);
 
   return (
-    <div className="w-screen h-screen h-[100dvh] bg-slate-600 flex flex-col pt-4 pb-12 px-6 gap-2 md:w-2/5 md:mx-auto">
+    <div className="w-screen min-h-screen min-h-[100dvh] bg-slate-600 flex flex-col pt-4 pb-12 px-6 gap-2 md:w-2/5 md:mx-auto">
       <header className="flex flex-row justify-between">
         <Link to="/" className="text-4xl font-bold">
           GPT'd?
@@ -93,7 +93,7 @@ export default function ResultPage() {
               </span>{" "}
               chance that it has been written by a human.
             </div>
-            <div className="flex flex-col gap-3 mt-4 overflow-scroll">
+            <div className="flex flex-col gap-3 mt-4 overflow-scroll-y">
               <h2 className="font-semibold">Chunks</h2>
               {results.predictions.map((prediction, i) => (
                 <div key={i} className="flex flex-col gap-2">

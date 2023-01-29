@@ -24,11 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/results",
-    element: (
-      <ProtectedRoute>
-        <Result />
-      </ProtectedRoute>
-    ),
+    element: <Result />,
   },
   {
     path: "/auth",

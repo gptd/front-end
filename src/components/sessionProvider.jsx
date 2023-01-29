@@ -22,6 +22,10 @@ export default function SessionProvider({ children }) {
     getSession();
   }, []);
 
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
+
   return (
     <SessionContext.Provider value={session}>
       {!loading && children}
