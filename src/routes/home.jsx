@@ -24,11 +24,12 @@ function App() {
             <img src={AboutIcon} alt="About" width={24} height={24} />
             About
           </a>
-          {session ? (
+          {session !== null && (
             <Link to="/auth/logout" className="font-semibold">
               Logout
             </Link>
-          ) : (
+          )}
+          {!session && (
             <Link to="/auth" className="font-semibold">
               Login
             </Link>
@@ -36,7 +37,7 @@ function App() {
         </nav>
         <h1 className="text-4xl font-bold">Have I been GPT'd?</h1>
       </header>
-      <textarea className="rounded-xl shadow-inset flex-grow shadow-inner p-4" />
+      <textarea className="rounded-xl shadow-inset flex-grow shadow-inner p-4 text-black" />
       <button className="rounded-xl bg-teal-600 px-4 py-3 shadow-xl hover:bg-teal-400">
         Check
       </button>

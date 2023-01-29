@@ -17,6 +17,8 @@ export default function Login() {
     // Check if value matches this regex pattern ^\+[1-9]\d{1,14}$
     if (!/^\+[1-9]\d{1,14}$/.test(value)) {
       setError("Please enter a valid phone number, e.g. +1234567890");
+      setPhone(value);
+      return;
     }
 
     setError(null);
@@ -73,7 +75,7 @@ export default function Login() {
           <input
             type="text"
             placeholder="Enter your verification code"
-            className="px-4 py-3 rounded-xl shadow-xl"
+            className="px-4 py-3 rounded-xl shadow-xl text-black bg-white"
             onChange={(event) => setVerificationCode(event.target.value)}
             value={verificationCode}
           />
@@ -89,7 +91,7 @@ export default function Login() {
           <input
             type="tel"
             placeholder="Enter your phone number"
-            className="px-4 py-3 rounded-xl shadow-xl"
+            className="px-4 py-3 rounded-xl shadow-xl text-black bg-white"
             onChange={handleNumberChange}
             value={phone}
           />

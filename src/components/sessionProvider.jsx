@@ -15,15 +15,15 @@ export default function SessionProvider({ children }) {
         return null;
       }
 
-      if (data && data.session) return data.session;
+      console.log(data);
+
+      if (data && data.session) return setSession(data.session);
     };
 
-    setSession(getSession());
+    supabase.auth.onAuthStateChange((_, session) => {
+      setSession(session);
+    });
   }, []);
-
-  supabase.auth.onAuthStateChange((_, session) => {
-    setSession(session);
-  });
 
   return (
     <SessionContext.Provider value={session}>

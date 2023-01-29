@@ -4,7 +4,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./routes/home.jsx";
 import Auth from "./routes/auth.jsx";
-import Result from "./routes/result-page.jsx";
+import Result from "./routes/results.jsx";
 
 import AuthComponent from "./components/auth";
 import LoginComponent from "./components/login";

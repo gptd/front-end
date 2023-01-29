@@ -16,7 +16,6 @@ export default function Register() {
 
   const handleNumberChange = (event) => {
     let { value } = event.target;
-    console.log(value);
 
     // Check if value matches this regex pattern ^\+[1-9]\d{1,14}$
     if (!/^\+[1-9]\d{1,14}$/.test(value)) {
@@ -81,7 +80,7 @@ export default function Register() {
             id="verificationCode"
             type="text"
             placeholder="Enter your verification code"
-            className="px-4 py-3 rounded-xl shadow-xl"
+            className="px-4 py-3 rounded-xl shadow-xl text-black bg-white"
             onChange={(event) => setVerificationCode(event.target.value)}
             value={verificationCode}
           />
@@ -97,14 +96,14 @@ export default function Register() {
           <input
             type="text"
             placeholder="Phone Number"
-            className="px-4 py-3 rounded-xl shadow-xl"
+            className="px-4 py-3 rounded-xl shadow-xl bg-white text-black"
             onChange={handleNumberChange}
             value={phone}
           />
           <input
             type="password"
             placeholder="Enter your password"
-            className="px-4 py-3 rounded-xl shadow-xl"
+            className="px-4 py-3 rounded-xl shadow-xl bg-white text-black"
             onChange={(event) => setPassword(event.target.value)}
             value={password}
           />
