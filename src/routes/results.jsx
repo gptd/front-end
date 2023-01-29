@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Spinner from "../assets/spinner.svg";
 
 function PercentageBar({ percentage }) {
   const width = {
@@ -54,8 +55,11 @@ export default function ResultPage() {
           return acc + curr.gpt;
         }, 0) / predictions.length;
 
-      setResults({ gptAverage, humanAverage, predictions });
-      console.log(results);
+      const gptChunkCount = predictions.reduce((acc, curr) => {
+        return curr.gpt > 50 ? acc + 1 : acc;
+      }, 0);
+
+      setResults({ gptAverage, humanAverage, predictions, gptChunkCount });
       setLoading(false);
     };
 
@@ -74,7 +78,13 @@ export default function ResultPage() {
       </header>
       <div className="flex-grow flex flex-col justify-center">
         {loading ? (
-          <p>Loading...</p>
+          <img
+            src={Spinner}
+            alt="Loading..."
+            className="mx-auto fill-none"
+            width={48}
+            height={48}
+          />
         ) : (
           <>
             <h2 className="font-semibold text-center text-4xl my-4">
@@ -84,14 +94,16 @@ export default function ResultPage() {
             </h2>
             <div className="text-center font-semibold">
               There is a{" "}
-              <span className="text-red-500">
+              <span className="text-red-500 font-semibold">
                 {results.gptAverage.toFixed(2)}%
               </span>{" "}
               chance that this text has been written by ChatGPT, and a{" "}
-              <span className="text-green-500">
+              <span className="text-green-500 font-semibold">
                 {results.humanAverage.toFixed(2)}%
               </span>{" "}
-              chance that it has been written by a human.
+              chance that it has been written by a human.{" "}
+              {results.gptChunkCount} out of {results.predictions.length} chunks
+              have been written by ChatGPT.
             </div>
             <div className="flex flex-col gap-3 mt-4 overflow-scroll-y">
               <h2 className="font-semibold">Chunks</h2>
