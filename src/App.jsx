@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import AboutIcon from "./assets/about.svg";
+import ShareIcon from "./assets/share.svg";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="w-screen h-screen h-[100dvh] bg-slate-600 flex flex-col px-4 py-6 gap-2 md:w-2/5 md:mx-auto">
+      <header className="flex flex-col gap-4 mb-2">
+        <nav className="flex flex-row gap-4 justify-end">
+          <a href="/share" className="flex flex-row gap-1 font-semibold">
+            <img src={ShareIcon} alt="Share" width={24} height={24} />
+            Share
+          </a>
+          <a
+            href="/about"
+            className="flex flex-row items-center gap-1 font-semibold"
+          >
+            <img src={AboutIcon} alt="About" width={24} height={24} />
+            About
+          </a>
+        </nav>
+        <h1 className="text-4xl font-bold">Have I been GPT'd?</h1>
+      </header>
+      <textarea className="rounded-xl shadow-inset flex-grow shadow-inner p-4" />
+      <button className="rounded-xl bg-teal-600 px-4 py-3 shadow-xl hover:bg-teal-400">
+        Check
+      </button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
