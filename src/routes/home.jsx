@@ -1,8 +1,11 @@
-import { useState } from "react";
 import AboutIcon from "../assets/about.svg";
 import ShareIcon from "../assets/share.svg";
+import { useSession } from "../components/sessionProvider";
+import { Link } from "react-router-dom";
 
 function App() {
+  const session = useSession();
+
   return (
     <div className="w-screen h-screen h-[100dvh] bg-slate-600 flex flex-col pt-4 pb-12 px-6 gap-2 md:w-2/5 md:mx-auto">
       <header className="flex flex-col gap-4 mb-2">
@@ -18,6 +21,15 @@ function App() {
             <img src={AboutIcon} alt="About" width={24} height={24} />
             About
           </a>
+          {session ? (
+            <Link to="/auth/logout" className="font-semibold">
+              Logout
+            </Link>
+          ) : (
+            <Link to="/auth" className="font-semibold">
+              Login
+            </Link>
+          )}
         </nav>
         <h1 className="text-4xl font-bold">Have I been GPT'd?</h1>
       </header>
