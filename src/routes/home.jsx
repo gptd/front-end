@@ -1,5 +1,7 @@
 import { useState } from "react";
 import AboutIcon from "../assets/about.svg";
+import { Outlet } from "react-router-dom";
+
 import ShareIcon from "../assets/share.svg";
 
 function App() {
@@ -25,6 +27,9 @@ function App() {
       <button className="rounded-xl bg-teal-600 px-4 py-3 shadow-xl hover:bg-teal-400">
         Check
       </button>
+      <div id="detail">
+        <Outlet />
+      </div>
     </div>
   );
 }
